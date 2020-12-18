@@ -6,16 +6,7 @@ passport.serializeUser((user, done) => {
     done(null, user);
 });
 passport.deserializeUser(async (user, done) => {
-    try {
-        const result = await knex("user_details")
-            .select("*")
-            .where("phone_number", user.phone_number);
-        if (result[0]) {
-            done(null, user);
-        }
-    } catch (err) {
-        done(err, null);
-    }
+    done(null, user)
 });
 
 passport.use(
